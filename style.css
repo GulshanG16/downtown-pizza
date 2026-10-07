@@ -1,0 +1,222 @@
+/* ---------------------------
+   Base styles
+   --------------------------- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f9;
+    color: #222;
+    line-height: 1.5;
+}
+
+.site-header {
+    background: #032869;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.site-header h1 {
+    margin: 0;
+}
+
+/* ---------------------------
+   MACRO GRID: main container
+   Desktop: form 2fr (about 66%), table 1fr (about 33%)
+   --------------------------- */
+.page-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* ---------------------------
+   MICRO GRID: inside each fieldset
+   150px for labels, 1fr for inputs
+   --------------------------- */
+fieldset {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 12px;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 0 0 20px 0;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0 6px;
+}
+
+/* Right-align labels in the left column */
+fieldset > label {
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Text inputs, number, date, select, textarea fill the 1fr column */
+input:not([type="radio"]):not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+
+/* Crust radios: one horizontal row */
+.option-row {
+    display: flex;
+    gap: 20px;
+}
+
+/* Toppings checkboxes: wrap onto new lines on narrow screens */
+.option-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+
+/* Button row */
+.button-row {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+
+}
+
+button[type="submit"] {
+    background: #032869;
+    color: #ffffff;
+}
+
+button[type="reset"] {
+    background: #ddd;
+    color: #222;
+}
+
+/* ---------------------------
+   TABLE styling
+   --------------------------- */
+.summary {
+    overflow-x: auto; /* horizontal scroll if needed on narrow screens */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+caption {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+thead th {
+    background: #032869;
+    color: #ffffff;
+}
+
+/* Zebra striping on body rows */
+tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* Hover effect on body rows */
+tbody tr:hover {
+    background: #ffe9c7;
+}
+
+tfoot td {
+    font-weight: bold;
+    background: #eee;
+}
+
+/* ---------------------------
+   VALIDATION feedback
+   Green when valid, red only AFTER the user interacts
+   --------------------------- */
+
+/* Inputs with placeholders: red only after the user starts typing */
+input:not(:placeholder-shown):invalid {
+    border: 2px solid red;
+}
+
+input:not(:placeholder-shown):valid {
+    border: 2px solid green;
+}
+
+/* Date/time has no placeholder: show red only while focused */
+input[type="datetime-local"]:focus:invalid {
+    border: 2px solid red;
+}
+
+input[type="datetime-local"]:valid {
+    border: 2px solid green;
+}
+
+/* Select has no placeholder: show red only while focused */
+select:focus:invalid {
+    border: 2px solid red;
+}
+
+select:valid {
+    border: 2px solid green;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 18px 10px;
+    color: #555;
+}
+
+/* ---------------------------
+   RESPONSIVE: mobile (600px and below)
+   --------------------------- */
+@media (max-width: 600px) {
+    /* Table stacks below the form */
+    .page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Labels go above inputs */
+    fieldset {
+        grid-template-columns: 1fr;
+    }
+
+    fieldset > label {
+        text-align: left;
+    }
+
+    /* Radios can wrap on very small screens */
+    .option-row {
+        flex-wrap: wrap;
+    }
+}
